@@ -1,0 +1,8 @@
+black==24.2.0
+flake8==7.0.0
+isort==5.13.2
+matplotlib==3.8.3
+mypy==1.9.0
+numpy==1.26.4
+sklearn~=0.0
+scikit-learn~=1.4.1

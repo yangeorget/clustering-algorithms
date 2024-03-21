@@ -1,26 +1,32 @@
-from cmeans import Cmeans
-from kmeans import Kmeans
-from sklearn import datasets
 import matplotlib.pyplot as plt
+from numpy.typing import NDArray
+from sklearn import datasets
+
+from c_means import CMeans
+from k_means import KMeans
 
 if __name__ == "__main__":
-    colors = ["red", "black", "blue"]
-    X, y = datasets.make_blobs(n_samples=100000)
+    points, clusters = datasets.make_blobs(n_samples=100000)
+    colors = ["red", "black", "blue"]  # the scikit learn data come in three clusters
     plt.ion()
     plt.figure()
 
-    def draw_clusters(position, title, clusters):
+    def draw_clusters(position: int, title: str, clusters: NDArray) -> None:
         for color_idx in range(len(colors)):
             plt.subplot(1, 3, position)
             plt.scatter(
-                X[clusters == color_idx][:, 0],
-                X[clusters == color_idx][:, 1],
+                points[clusters == color_idx][:, 0],
+                points[clusters == color_idx][:, 1],
                 color=colors[color_idx],
             )
             plt.pause(0.01)
             plt.title(title)
             plt.draw()
 
-    draw_clusters(1, "original data", y)
-    Kmeans(len(colors), 30, lambda t, c: draw_clusters(2, t, c)).compute_clusters(X)
-    Cmeans(len(colors), 30, 2, lambda t, c: draw_clusters(3, t, c)).compute_clusters(X)
+    draw_clusters(1, "original data", clusters)
+    k_means = KMeans(len(colors), 100)
+    setattr(k_means, "log_iteration", lambda i, c: draw_clusters(2, f"k-means #{i}", c))
+    k_means.fit(points)
+    c_means = CMeans(len(colors), 100, 2)
+    setattr(c_means, "log_iteration", lambda i, c: draw_clusters(3, f"c-means #{i}", c))
+    c_means.fit(points)
