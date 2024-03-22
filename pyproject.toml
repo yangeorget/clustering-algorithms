@@ -1,2 +1,28 @@
+[project]
+name = "clustering_algorithms"
+version = "0.1.3"
+authors = [
+  { name="Yan Georget", email="yan.georget@gmail.com" },
+]
+description = "Clustering algorithms powered by Numpy"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "numpy",
+]
+
+[project.urls]
+Homepage = "https://github.com/yangeorget/clustering-algorithms"
+Issues = "https://github.com/yangeorget/clustering-algorithms"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
 [tool.black]
 line-length = 120
+

@@ -1,15 +1,17 @@
 import numpy as np
-from clustering_algorithm import ClusteringAlgorithm
 from numpy.typing import NDArray
+
+from clustering_algorithms.clustering_algorithm import ClusteringAlgorithm
 
 
 class KMeans(ClusteringAlgorithm):
     """
-    A Numpy implementation of the K-Means clustering algorithm.
+    A Numpy implementation of the K-Means clustering_algorithms algorithm.
     """
 
     def compute_centroids(self, points: NDArray, clusters: NDArray) -> NDArray:
         """
+        Computes the centroid given the clusters.
         :param points: a nxd matrix
         :param clusters: a nx1 matrix
         :return: a kxd matrix where k is the number of clusters and d the number of dimensions

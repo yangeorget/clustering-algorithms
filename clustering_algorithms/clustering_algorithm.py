@@ -4,11 +4,15 @@ from numpy.typing import NDArray
 # mypy: disable-error-code=empty-body
 class ClusteringAlgorithm:
     """
-    An abstract clustering algorithm.
+    An abstract clustering_algorithms algorithm.
     Clustering algorithms produce models that are set of centroids.
     """
 
     def __init__(self, k: int, iterations: int):
+        """
+        :param k: the number of clusters
+        :param iterations: the number of iterations
+        """
         self.iterations = iterations
         self.k = k
 
@@ -24,8 +28,8 @@ class ClusteringAlgorithm:
         """
         Applies the model to a set of points.
         :param points: a new set of points
-        :param model: the clustering model
-        :return: for each point, the clustering output
+        :param model: the clustering_algorithms model
+        :return: for each point, the clustering_algorithms output
         """
         pass
 

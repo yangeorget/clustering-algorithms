@@ -1,19 +1,26 @@
 import numpy as np
-from clustering_algorithm import ClusteringAlgorithm
 from numpy.typing import NDArray
+
+from clustering_algorithms.clustering_algorithm import ClusteringAlgorithm
 
 
 class CMeans(ClusteringAlgorithm):
     """
-    A Numpy implementation of the C-Means clustering algorithm.
+    A Numpy implementation of the C-Means clustering_algorithms algorithm.
     """
 
     def __init__(self, k: int, iterations: int, m: int):
+        """
+        :param k: the number of clusters
+        :param iterations: the number of iterations
+        :param m: the fuzzifier factor (should be > 1)
+        """
         super().__init__(k, iterations)
-        self.m = m  # fuzzifier
+        self.m = m
 
     def compute_centroids(self, points: NDArray, weights: NDArray) -> NDArray:
         """
+        Computes the centroids given the weights.
         :param points: a nxd matrix
         :param weights: a nxk matrix
         :return: a kxd matrix where k is the number of clusters and d the number of dimensions

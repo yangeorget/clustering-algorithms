@@ -1,8 +1,9 @@
 import matplotlib.pyplot as plt
-from c_means import CMeans
-from k_means import KMeans
 from numpy.typing import NDArray
 from sklearn import datasets
+
+from clustering_algorithms.c_means import CMeans
+from clustering_algorithms.k_means import KMeans
 
 if __name__ == "__main__":
     points, clusters = datasets.make_blobs(n_samples=1000)

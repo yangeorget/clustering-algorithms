@@ -4,4 +4,4 @@ isort==5.13.2
 matplotlib==3.8.3
 mypy==1.9.0
 numpy==1.26.4
-scikit-learn==1.4.1
+scikit-learn==1.4.0
