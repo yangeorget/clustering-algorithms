@@ -1,5 +1,4 @@
 .idea/
-.pypirc
 clustering_algorithms.egg-info/
 __pycache__/
 dist/
