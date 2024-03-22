@@ -5,6 +5,7 @@ from numpy.typing import NDArray
 class ClusteringAlgorithm:
     """
     An abstract clustering algorithm.
+    Clustering algorithms produce models that are set of centroids.
     """
 
     def __init__(self, k: int, iterations: int):

@@ -9,6 +9,11 @@ class KMeans(ClusteringAlgorithm):
     """
 
     def compute_centroids(self, points: NDArray, clusters: NDArray) -> NDArray:
+        """
+        :param points: a nxd matrix
+        :param clusters: a nx1 matrix
+        :return: a kxd matrix where k is the number of clusters and d the number of dimensions
+        """
         return np.array([np.mean(points[clusters == j], axis=0) for j in range(self.k)])
 
     def fit(self, points: NDArray) -> NDArray:
@@ -28,4 +33,4 @@ class KMeans(ClusteringAlgorithm):
         return np.array([np.argmin(np.linalg.norm(centroids - points[i], axis=1)) for i in range(n)])
 
     def should_stop(self, centroids: NDArray, new_centroids: NDArray) -> bool:
-        return np.all(new_centroids == centroids)
+        return np.all(new_centroids == centroids)  # type: ignore
