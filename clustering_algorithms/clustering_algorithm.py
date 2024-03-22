@@ -4,7 +4,7 @@ from numpy.typing import NDArray
 # mypy: disable-error-code=empty-body
 class ClusteringAlgorithm:
     """
-    An abstract clustering_algorithms algorithm.
+    An abstract clustering algorithm.
     Clustering algorithms produce models that are set of centroids.
     """
 
