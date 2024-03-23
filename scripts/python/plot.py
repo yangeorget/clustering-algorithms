@@ -6,27 +6,29 @@ from clustering_algorithms.c_means import CMeans
 from clustering_algorithms.k_means import KMeans
 
 if __name__ == "__main__":
-    points, clusters = datasets.make_blobs(n_samples=1000)
-    colors = ["red", "black", "blue"]  # the scikit learn data come in three clusters
+    colors = ["red", "black", "blue"]
+    clusters_nb = len(colors)
+    points, clusters = datasets.make_blobs(n_samples=1000, n_features=10, centers=clusters_nb)
+    iteration_nb = 100
     plt.ion()
     plt.figure()
 
     def draw_clusters(position: int, title: str, clusters: NDArray) -> None:
-        for color_idx in range(len(colors)):
+        for cluster in range(clusters_nb):
             plt.subplot(1, 3, position)
             plt.scatter(
-                points[clusters == color_idx][:, 0],
-                points[clusters == color_idx][:, 1],
-                color=colors[color_idx],
+                points[clusters == cluster][:, 0],
+                points[clusters == cluster][:, 1],
+                color=colors[cluster],
             )
             plt.pause(0.01)
             plt.title(title)
             plt.draw()
 
     draw_clusters(1, "original data", clusters)
-    k_means = KMeans(len(colors), 100)
+    k_means = KMeans(clusters_nb, iteration_nb)
     setattr(k_means, "log_iteration", lambda i, c: draw_clusters(2, f"k-means #{i}", c))
     k_means.fit(points)
-    c_means = CMeans(len(colors), 100, 2)
+    c_means = CMeans(clusters_nb, iteration_nb, 2)
     setattr(c_means, "log_iteration", lambda i, c: draw_clusters(3, f"c-means #{i}", c))
     c_means.fit(points)

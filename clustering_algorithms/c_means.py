@@ -32,6 +32,7 @@ class CMeans(ClusteringAlgorithm):
         n = points.shape[0]
         weights = np.array(np.random.dirichlet(np.ones(self.k), n))
         for iteration in range(self.iterations):
+            # TODO: implement early stop
             centroids = self.compute_centroids(points, weights)
             weights = self.predict(points, centroids)
             clusters = np.argmax(weights, axis=1)

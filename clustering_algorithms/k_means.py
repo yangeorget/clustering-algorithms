@@ -5,6 +5,7 @@ from clustering_algorithms.clustering_algorithm import ClusteringAlgorithm
 
 
 class KMeans(ClusteringAlgorithm):
+    # TODO: K-means++
     """
     A Numpy implementation of the K-Means clustering_algorithms algorithm.
     """
@@ -25,13 +26,14 @@ class KMeans(ClusteringAlgorithm):
             clusters = self.predict(points, centroids)
             self.log_iteration(iteration, clusters)
             new_centroids = self.compute_centroids(points, clusters)
-            if self.should_stop(centroids, new_centroids):
-                break
+            # if self.should_stop(centroids, new_centroids):
+            #    break
             centroids = new_centroids
         return centroids
 
     def predict(self, points: NDArray, centroids: NDArray) -> NDArray:
         n = points.shape[0]
+        # TODO: rewrite without a loop
         return np.array([np.argmin(np.linalg.norm(centroids - points[i], axis=1)) for i in range(n)])
 
     def should_stop(self, centroids: NDArray, new_centroids: NDArray) -> bool:

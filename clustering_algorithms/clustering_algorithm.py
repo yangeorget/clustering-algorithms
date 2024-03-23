@@ -3,6 +3,7 @@ from numpy.typing import NDArray
 
 # mypy: disable-error-code=empty-body
 class ClusteringAlgorithm:
+    # TODO: make dist a parameter
     """
     An abstract clustering algorithm.
     Clustering algorithms produce models that are set of centroids.
