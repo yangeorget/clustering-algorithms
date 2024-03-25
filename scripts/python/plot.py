@@ -13,13 +13,13 @@ if __name__ == "__main__":
     plt.ion()
     plt.figure()
 
-    def draw_clusters(position: int, title: str, clusters: NDArray) -> None:
-        for cluster in range(clusters_nb):
+    def draw_clusters(position: int, title: str, clstrs: NDArray) -> None:
+        for clstr in range(clusters_nb):
             plt.subplot(1, 3, position)
             plt.scatter(
-                points[clusters == cluster][:, 0],
-                points[clusters == cluster][:, 1],
-                color=colors[cluster],
+                points[clstrs == clstr][:, 0],
+                points[clstrs == clstr][:, 1],
+                color=colors[clstr],
             )
             plt.pause(0.01)
             plt.title(title)
@@ -27,8 +27,8 @@ if __name__ == "__main__":
 
     draw_clusters(1, "original data", clusters)
     k_means = KMeans(clusters_nb, iteration_nb)
-    setattr(k_means, "log_iteration", lambda i, c: draw_clusters(2, f"k-means #{i}", c))
+    setattr(k_means, "log_iteration", lambda it, _, c: draw_clusters(2, f"k-means #{it}", c))
     k_means.fit(points)
-    c_means = CMeans(clusters_nb, iteration_nb, 2)
-    setattr(c_means, "log_iteration", lambda i, c: draw_clusters(3, f"c-means #{i}", c))
+    c_means = CMeans(clusters_nb, iteration_nb)
+    setattr(c_means, "log_iteration", lambda it, _, c: draw_clusters(3, f"c-means #{it}", c))
     c_means.fit(points)

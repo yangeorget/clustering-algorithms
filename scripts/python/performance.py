@@ -14,6 +14,6 @@ if __name__ == "__main__":
     k_means.fit(points)
     print(f"K-Means took {time.time() - start_time} seconds")
     start_time = time.time()
-    c_means = CMeans(clusters_nb, iteration_nb, 2)
+    c_means = CMeans(clusters_nb, iteration_nb)
     c_means.fit(points)
     print(f"C-Means took {time.time() - start_time} seconds")
