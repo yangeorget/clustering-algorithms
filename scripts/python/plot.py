@@ -8,7 +8,7 @@ from clustering_algorithms.k_means import KMeans
 if __name__ == "__main__":
     colors = ["red", "black", "blue"]
     clusters_nb = len(colors)
-    points, clusters = datasets.make_blobs(n_samples=1000, n_features=10, centers=clusters_nb)
+    points, clusters = datasets.make_blobs(n_samples=1000, n_features=2, centers=clusters_nb)
     iteration_nb = 100
     plt.ion()
     plt.figure()

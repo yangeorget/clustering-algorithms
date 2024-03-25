@@ -7,7 +7,7 @@ from clustering_algorithms.k_means import KMeans
 
 if __name__ == "__main__":
     clusters_nb = 3
-    points, clusters = datasets.make_blobs(n_samples=100000, n_features=10, centers=clusters_nb)
+    points, clusters = datasets.make_blobs(n_samples=1000000, n_features=10, centers=clusters_nb)
     iteration_nb = 100
     start_time = time.time()
     k_means = KMeans(clusters_nb, iteration_nb)

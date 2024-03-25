@@ -32,9 +32,7 @@ class KMeans(ClusteringAlgorithm):
         return centroids
 
     def predict(self, points: NDArray, centroids: NDArray) -> NDArray:
-        n = points.shape[0]
-        # TODO: rewrite without a loop
-        return np.array([np.argmin(np.linalg.norm(centroids - points[i], axis=1)) for i in range(n)])
+        return np.argmin(np.linalg.norm(points[:, np.newaxis] - centroids, axis=2), axis=1)
 
     def should_stop(self, centroids: NDArray, new_centroids: NDArray) -> bool:
         return np.all(new_centroids == centroids)  # type: ignore
