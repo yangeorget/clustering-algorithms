@@ -30,10 +30,14 @@ class CMeans(ClusteringAlgorithm):
         wm = weights**self.m
         return (points.T @ wm / np.sum(wm, axis=0)).T
 
-    def fit(self, points: NDArray) -> Sequence[NDArray]:
+    def init(self, points: NDArray) -> Sequence[NDArray]:
         n = points.shape[0]
         weights = np.array(np.random.dirichlet(np.ones(self.k), n))
         centroids = self.compute_centroids(points, weights)
+        return centroids, weights
+
+    def fit(self, points: NDArray) -> Sequence[NDArray]:
+        centroids, weights = self.init(points)
         for iteration in range(self.iterations):
             clusters = np.argmax(weights, axis=1)
             self.log_iteration(iteration, centroids, clusters)

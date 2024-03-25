@@ -1,4 +1,4 @@
-from typing import Sequence
+from typing import Sequence, Union
 
 import numpy as np
 from numpy.typing import NDArray
@@ -19,6 +19,14 @@ class ClusteringAlgorithm:
         self.iterations = iterations
         self.k = k
 
+    def init(self, points: NDArray) -> Union[NDArray, Sequence[NDArray]]:
+        """
+        Inits the model.
+        :param points: the training set
+        :return: a sequence of arrays including a set of centroids
+        """
+        pass
+
     def fit(self, points: NDArray) -> Sequence[NDArray]:
         """
         Fits a model to the training set (the points).
@@ -27,11 +35,11 @@ class ClusteringAlgorithm:
         """
         pass
 
-    def predict(self, points: NDArray, model: NDArray) -> NDArray:
+    def predict(self, points: NDArray, centroids: NDArray) -> NDArray:
         """
         Applies the model to a set of points.
         :param points: a new set of points
-        :param model: the clustering_algorithms model
+        :param centroids: the centroids
         :return: for each point, the clustering_algorithms output
         """
         pass

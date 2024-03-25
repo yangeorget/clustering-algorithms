@@ -7,7 +7,6 @@ from clustering_algorithms.clustering_algorithm import ClusteringAlgorithm
 
 
 class KMeans(ClusteringAlgorithm):
-    # TODO: K-means++
     """
     A Numpy implementation of the K-Means clustering_algorithms algorithm.
     """
@@ -21,9 +20,13 @@ class KMeans(ClusteringAlgorithm):
         """
         return np.array([np.mean(points[clusters == j], axis=0) for j in range(self.k)])
 
-    def fit(self, points: NDArray) -> Sequence[NDArray]:
+    def init(self, points: NDArray) -> NDArray:
+        # TODO : kmeans++
         n = points.shape[0]
-        centroids = points[np.random.choice(n, self.k, replace=False), :]
+        return points[np.random.choice(n, self.k, replace=False), :]
+
+    def fit(self, points: NDArray) -> Sequence[NDArray]:
+        centroids = self.init(points)
         for iteration in range(self.iterations):
             clusters = self.predict(points, centroids)
             self.log_iteration(iteration, centroids, clusters)
