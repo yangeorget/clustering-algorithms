@@ -15,7 +15,7 @@ class CMeans(ClusteringAlgorithm):
         """
         :param k: the number of clusters
         :param iterations: the number of iterations
-        :param m: the fuzzifier factor (should be > 1, default to 2)
+        :param m: the fuzzifier factor (should be > 1, defaults to 2)
         """
         super().__init__(k, iterations)
         self.m = m
