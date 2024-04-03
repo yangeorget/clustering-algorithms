@@ -8,7 +8,7 @@ from clustering_algorithms.clustering_algorithm import ClusteringAlgorithm
 
 class CMeans(ClusteringAlgorithm):
     """
-    A Numpy implementation of the C-Means clustering_algorithms algorithm.
+    A Numpy implementation of the C-Means clustering algorithm.
     """
 
     def __init__(self, k: int, iterations: int, m: int = 2):

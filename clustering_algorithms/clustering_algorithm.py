@@ -23,7 +23,7 @@ class ClusteringAlgorithm:
         """
         Inits the model.
         :param points: the training set
-        :return: a sequence of arrays including a set of centroids
+        :return: a sequence of arrays starting with, at least: a set of centroids
         """
         pass
 
@@ -31,7 +31,7 @@ class ClusteringAlgorithm:
         """
         Fits a model to the training set (the points).
         :param points: the training set
-        :return: a sequence of arrays including a set of centroids, the corresponding clusters
+        :return: a sequence of arrays starting with, at least : a set of centroids, the corresponding clusters
         """
         pass
 
@@ -40,7 +40,7 @@ class ClusteringAlgorithm:
         Applies the model to a set of points.
         :param points: a new set of points
         :param centroids: the centroids
-        :return: for each point, the clustering_algorithms output
+        :return: for each point, the clustering output
         """
         pass
 
