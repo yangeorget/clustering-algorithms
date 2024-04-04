@@ -11,7 +11,7 @@ class ClusteringAlgorithm:
     Clustering algorithms produce models that are set of centroids.
     """
 
-    def __init__(self, k: int, iterations: int):
+    def __init__(self, k: int, iterations: int = 1):
         """
         :param k: the number of clusters
         :param iterations: the number of iterations

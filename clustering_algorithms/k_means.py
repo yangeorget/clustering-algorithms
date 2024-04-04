@@ -37,5 +37,4 @@ class KMeans(ClusteringAlgorithm):
         return centroids, clusters
 
     def predict(self, points: NDArray, centroids: NDArray) -> NDArray:
-        # TODO: write tests
         return np.argmin(self.distances(points, centroids), axis=1)

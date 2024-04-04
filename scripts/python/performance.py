@@ -26,6 +26,6 @@ if __name__ == "__main__":
         c_means_time = time.time() - start_time
         print(f"C-Means took {c_means_time} seconds")
         c_means_times.append(c_means_time)
-    plt.plot(sizes, k_means_times, color='red')
-    plt.plot(sizes, c_means_times, color='blue')
+    plt.plot(sizes, k_means_times, color="red")
+    plt.plot(sizes, c_means_times, color="blue")
     plt.show()
