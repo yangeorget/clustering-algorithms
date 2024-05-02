@@ -30,7 +30,7 @@ class CMeans(ClusteringAlgorithm):
         wm = weights**self.m
         return (points.T @ wm / np.sum(wm, axis=0)).T
 
-    def init(self, points: NDArray) -> Sequence[NDArray]:
+    def init(self, points: NDArray, method: str = "random") -> Sequence[NDArray]:
         n = points.shape[0]
         weights = np.array(np.random.dirichlet(np.ones(self.k), n))
         centroids = self.compute_centroids(points, weights)

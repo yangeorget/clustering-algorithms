@@ -19,10 +19,11 @@ class ClusteringAlgorithm:
         self.iterations = iterations
         self.k = k
 
-    def init(self, points: NDArray) -> Union[NDArray, Sequence[NDArray]]:
+    def init(self, points: NDArray, method: str = "random") -> Union[NDArray, Sequence[NDArray]]:
         """
         Inits the model.
         :param points: the training set
+        :param method: the init method, defaults to "random"
         :return: a sequence of arrays starting with, at least: a set of centroids
         """
         pass
