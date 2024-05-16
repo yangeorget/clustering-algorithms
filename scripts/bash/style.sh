@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Running isort" && \
-isort --trailing-comma clustering_algorithms tests scripts/python && \
+isort --profile black --trailing-comma clustering_algorithms tests scripts/python && \
 echo "Running black" && \
 black clustering_algorithms tests scripts/python && \
 echo "Running flake8" && \
