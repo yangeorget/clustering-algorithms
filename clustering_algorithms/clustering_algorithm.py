@@ -25,6 +25,7 @@ class ClusteringAlgorithm:
         :param points: the training set
         :param method: the init method, defaults to "random"
         :return: a sequence of arrays starting with, at least: a set of centroids
+        :raise ClusteringException when the cluster computation fails
         """
         pass
 
@@ -33,6 +34,7 @@ class ClusteringAlgorithm:
         Fits a model to the training set (the points).
         :param points: the training set
         :return: a sequence of arrays starting with, at least : a set of centroids, the corresponding clusters
+        :raise ClusteringException when the cluster computation fails
         """
         pass
 

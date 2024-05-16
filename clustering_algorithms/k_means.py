@@ -4,6 +4,11 @@ import numpy as np
 from numpy.typing import NDArray
 
 from clustering_algorithms.clustering_algorithm import ClusteringAlgorithm
+from clustering_algorithms.clustering_exception import (
+    TOO_FEW_CLUSTERS,
+    TOO_MANY_CLUSTERS,
+    ClusteringException,
+)
 
 
 class KMeans(ClusteringAlgorithm):
@@ -22,6 +27,8 @@ class KMeans(ClusteringAlgorithm):
 
     def init(self, points: NDArray, method: str = "kmeans++") -> NDArray:
         n = points.shape[0]
+        if n < self.k:
+            raise ClusteringException(TOO_MANY_CLUSTERS)
         if method == "random":
             return points[np.random.choice(n, self.k, replace=False), :]
         else:  # kmeans++
@@ -40,8 +47,13 @@ class KMeans(ClusteringAlgorithm):
 
     def fit(self, points: NDArray) -> Sequence[NDArray]:
         centroids = self.init(points)
+        return self._fit(points, centroids)
+
+    def _fit(self, points: NDArray, centroids: NDArray) -> Sequence[NDArray]:
         for iteration in range(self.iterations):
             clusters = self.predict(points, centroids)
+            if len(np.unique(clusters)) < self.k:
+                raise ClusteringException(TOO_FEW_CLUSTERS)
             self.log_iteration(iteration, centroids, clusters)
             new_centroids = self.compute_centroids(points, clusters)
             if np.all(new_centroids == centroids):  # type: ignore
