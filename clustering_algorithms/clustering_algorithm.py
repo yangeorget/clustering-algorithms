@@ -11,13 +11,15 @@ class ClusteringAlgorithm:
     Clustering algorithms produce models that are set of centroids.
     """
 
-    def __init__(self, k: int, iterations: int = 1):
+    def __init__(self, k: int, iterations: int = 1, tolerance: float = 0.0):
         """
         :param k: the number of clusters
         :param iterations: the number of iterations
+        :param tolerance: the maximal distance between generation n-1 and generation n centroids
         """
         self.iterations = iterations
         self.k = k
+        self.tolerance = tolerance
 
     def init(self, points: NDArray, method: str = "random") -> Union[NDArray, Sequence[NDArray]]:
         """
@@ -64,3 +66,12 @@ class ClusteringAlgorithm:
         :param clusters: the computed clusters
         """
         pass
+
+    def should_stop(self, centroids: NDArray, new_centroids: NDArray) -> bool:
+        """
+        Returns a boolean indicating if the algorithm should stop.
+        :param centroids: the previous centroids
+        :param new_centroids: the new centroids
+        :return: a boolean
+        """
+        return np.mean(np.linalg.norm(new_centroids - centroids, axis=1)) <= self.tolerance

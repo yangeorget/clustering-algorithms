@@ -6,5 +6,3 @@ class ClusteringException(Exception):
     """
     This exception is raised when the clustering fails.
     """
-
-    pass

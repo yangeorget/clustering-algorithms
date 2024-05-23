@@ -52,7 +52,7 @@ class CMeans(ClusteringAlgorithm):
             self.log_iteration(iteration, centroids, clusters)
             weights = self.predict(points, centroids)
             new_centroids = self.compute_centroids(points, weights)
-            if np.all(new_centroids == centroids):  # type: ignore
+            if self.should_stop(centroids, new_centroids):
                 break
             centroids = new_centroids
         return centroids, clusters, weights

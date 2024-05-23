@@ -56,7 +56,7 @@ class KMeans(ClusteringAlgorithm):
                 raise ClusteringException(TOO_FEW_CLUSTERS)
             self.log_iteration(iteration, centroids, clusters)
             new_centroids = self.compute_centroids(points, clusters)
-            if np.all(new_centroids == centroids):  # type: ignore
+            if self.should_stop(centroids, new_centroids):
                 break
             centroids = new_centroids
         return centroids, clusters
